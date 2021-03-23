@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Checkout from "./components/Checkout";
 import Header from "./components/header";
 import Home from "./components/home";
 
@@ -9,10 +10,10 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path="/checkout" component={Checkout} />
         </Switch>
       </BrowserRouter>
-      <h1>hello world</h1>
     </div>
   );
 }
