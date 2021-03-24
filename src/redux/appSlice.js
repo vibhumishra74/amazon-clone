@@ -11,13 +11,22 @@ const appSlice = createSlice({
       // console.log("state from appslice>>", state.baskets);
       console.log("state from appslice>>", action);
       // state.baskets += action.payload.price;
-      state.baskets += action.payload;
+      state.baskets.push(action.payload);
+      // let newBasket = state.baskets.push(action.paylod);
+      // state.baskets = newBasket;
     },
     basketvalue: (state) => {
       state.value = state.basket.length;
     },
     decremented: (state, action) => {
-      state.basket -= action.payload;
+      // state.basket.splice(
+      //   state.basket.findIndex((item) => item.id === action.payload.id),
+      //   1
+      // );
+      state.baskets.filter((items) => {
+        console.log("decrement", items);
+        return items.id !== state.baskets.id;
+      });
     },
   },
 });

@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { createStore } from "redux";
 import reducers from "./reduxs/index";
-console.log("all store>>>", store);
+// console.log("all store>>>", store);
 // let store = createStore(reducers);
 ReactDOM.render(
   <React.StrictMode>
