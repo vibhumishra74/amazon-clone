@@ -13,6 +13,7 @@ const appSlice = createSlice({
       // state.baskets += action.payload.price;
       state.baskets.push(action.payload);
       // let newBasket = state.baskets.push(action.paylod);
+      console.log("statessss>>", state.baskets[0]);
       // state.baskets = newBasket;
     },
     basketvalue: (state) => {
@@ -23,10 +24,23 @@ const appSlice = createSlice({
       //   state.basket.findIndex((item) => item.id === action.payload.id),
       //   1
       // );
-      state.baskets.filter((items) => {
-        console.log("decrement", items);
-        return items.id !== state.baskets.id;
-      });
+      // state.baskets = [...state.baskets.filter(
+      //   (pro) => pro.id !== action.payload.id
+      // )]
+      console.log("action>>>>", action.payload);
+      const pid = `${action.payload.id}`;
+      state.baskets = [...state.baskets.filter((item) => item.id !== pid)];
+      console.log("state.basket", state.baskets);
+      // console.log(
+      //   "decrement...",
+      //   state.baskets,
+      //   "state",
+      //   state,
+      //   "payloadsss",
+      //   action.payload
+      // );
+      //  ba =  [...state.baskets]
+      // state.baskets.filter((items) => items.id !== action.payload.id);
     },
   },
 });

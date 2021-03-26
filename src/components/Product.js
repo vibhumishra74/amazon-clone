@@ -5,7 +5,7 @@ import "./product.css";
 
 function Product({ id, title, image, price, rating }) {
   let dispatch = useDispatch();
-  console.log("selectbasket", selectbasket);
+  // console.log("selectbasket", selectbasket);
   // let basketvalues = useSelector(selectbasket);
   let values = useSelector(value);
   let addtostore = () => {
