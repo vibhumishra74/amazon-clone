@@ -1,12 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decremented, selectbasket, value } from "../redux/appSlice";
+import {
+  decremented,
+  selectbasket,
+  value,
+  selectuser,
+} from "../redux/appSlice";
 import "./checkout.css";
 import Checkoutproduct from "./Checkoutproduct";
 import Subtotal from "./subtotal";
 let images = window.location.origin + "/images/amazon_ad.jpg";
 function Checkout() {
   let basket = useSelector(selectbasket);
+  let user = useSelector(selectuser);
   let values = useSelector(value);
 
   return (
@@ -14,6 +20,7 @@ function Checkout() {
       {/* {console.log("valuess>>>>", values?.length)} */}
       <div className="checkout_left">
         <img src={images} alt="checkout_ad" className="checkout_ad" />
+        <h3> {!user ? "" : `hello, ${user?.email}`} </h3>
         <h2 className="checkout_title">your shopping basket</h2>
         {basket?.map((items) => {
           return (

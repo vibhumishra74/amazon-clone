@@ -1,17 +1,43 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Checkout from "./components/Checkout";
 import Header from "./components/header";
 import Home from "./components/home";
+import Login from "./components/Login";
+import { auth } from "./firebase";
+import { user } from "./redux/appSlice";
 
 function App() {
+  let dispatch = useDispatch();
+  useEffect(() => {
+    auth.onAuthStateChanged((authuser) => {
+      // console.log("app.js authuser is>>", authuser);
+      if (authuser) {
+        dispatch(user(authuser));
+        // console.log("userdispatch if frpm app.js", authuser);
+      } else {
+        dispatch(user(null));
+        // console.log("userdispatch else frpm app.js");
+      }
+    });
+  }, []);
   return (
     <div className="app">
       <BrowserRouter>
-        <Header />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/checkout" component={Checkout} />
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/">
+            <Header />
+            <Home />
+          </Route>
+          <Route path="/checkout">
+            <Header />
+            <Checkout />
+          </Route>
         </Switch>
       </BrowserRouter>
     </div>

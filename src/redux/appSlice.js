@@ -4,49 +4,44 @@ const appSlice = createSlice({
   name: "basket",
   initialState: {
     baskets: [],
-    value: 0,
+    users: null,
   },
   reducers: {
     incremented: (state, action) => {
       // console.log("state from appslice>>", state.baskets);
-      console.log("state from appslice>>", action);
-      // state.baskets += action.payload.price;
-      state.baskets.push(action.payload);
+      // console.log("state from appslice>>", action);
       // let newBasket = state.baskets.push(action.paylod);
-      console.log("statessss>>", state.baskets[0]);
-      // state.baskets = newBasket;
+      // console.log("statessss>>", state.baskets[0]);
+      state.baskets.push(action.payload);
     },
-    basketvalue: (state) => {
-      state.value = state.basket.length;
+    user: (state, action) => {
+      state.users = action.payload;
     },
     decremented: (state, action) => {
-      // state.basket.splice(
-      //   state.basket.findIndex((item) => item.id === action.payload.id),
-      //   1
-      // );
       // state.baskets = [...state.baskets.filter(
       //   (pro) => pro.id !== action.payload.id
       // )]
-      console.log("action>>>>", action.payload);
+      // console.log("action>>>>", action.payload);
       const pid = `${action.payload.id}`;
-      state.baskets = [...state.baskets.filter((item) => item.id !== pid)];
-      console.log("state.basket", state.baskets);
-      // console.log(
-      //   "decrement...",
-      //   state.baskets,
-      //   "state",
-      //   state,
-      //   "payloadsss",
-      //   action.payload
-      // );
-      //  ba =  [...state.baskets]
-      // state.baskets.filter((items) => items.id !== action.payload.id);
+      //remove all items with same id
+      // state.baskets = [...state.baskets.filter((item) => item.id !== pid)];
+      // console.log("state.basket", state.baskets);
+      //remove single items with 1st index
+      const index = state.baskets.findIndex((i) => i.id === pid);
+      let newBasket = [...state.baskets];
+      if (index >= 0) {
+        newBasket.splice(index, 1);
+      } else {
+        console.log(`no items found with ${pid}`);
+      }
+      state.baskets = newBasket;
     },
   },
 });
 
-export const { incremented, decremented } = appSlice.actions;
+export const { incremented, decremented, user } = appSlice.actions;
 export const selectbasket = (state) => state.baskets;
+export const selectuser = (state) => state.users;
 export const value = (state) => state.value;
 
 export default appSlice.reducer;
