@@ -6,6 +6,7 @@ import Checkout from "./components/Checkout";
 import Header from "./components/header";
 import Home from "./components/home";
 import Login from "./components/Login";
+import Payment from "./components/Payment";
 import { auth } from "./firebase";
 import { user } from "./redux/appSlice";
 
@@ -30,13 +31,18 @@ function App() {
           <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path="/">
-            <Header />
-            <Home />
-          </Route>
+
           <Route path="/checkout">
             <Header />
             <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Payment />
+          </Route>
+          <Route path="/">
+            <Header />
+            <Home />
           </Route>
         </Switch>
       </BrowserRouter>
