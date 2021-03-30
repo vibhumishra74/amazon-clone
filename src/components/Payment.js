@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { selectuser, selectbasket } from "../redux/appSlice";
 import Checkoutproduct from "./Checkoutproduct";
 import "./payment.css";
@@ -8,6 +8,13 @@ import "./payment.css";
 function Payment() {
   let basket = useSelector(selectbasket);
   let email = useSelector(selectuser);
+  let history = useHistory();
+  let confirm = () => {
+    alert(
+      `your order has been successfully confirm and thank you for chooseing cod product will be deliver to your address ${email?.email} in next 7 days`
+    );
+    window.location.reload(history.push("/"));
+  };
   return (
     <div className="payment">
       <div className="payment__container">
@@ -42,9 +49,24 @@ function Payment() {
         </div>
         <div className="payment__section">
           <div className="payment__title">
-            <h3>payment Method</h3>
+            <h3>Payment Method</h3>
           </div>
-          <div className="payment__details"></div>
+          <div className="payment__details">
+            {/* <label for="cars">Choose a payment</label> */}
+
+            <select
+              style={{ border: 0, outline: 0 }}
+              name="delivery"
+              id="delivery"
+              required
+            >
+              <option value="cod">cod</option>
+              <option value="codd">cash on delivery</option>
+            </select>
+            <button className="payment__confirm" onClick={confirm}>
+              Confirm
+            </button>
+          </div>
         </div>
       </div>
     </div>

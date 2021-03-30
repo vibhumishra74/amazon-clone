@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Payment from "./components/Payment";
 import { auth } from "./firebase";
 import { user } from "./redux/appSlice";
+import Footer from "./components/footer";
 
 function App() {
   let dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
             <Home />
           </Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );

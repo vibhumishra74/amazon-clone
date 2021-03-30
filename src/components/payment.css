@@ -24,3 +24,21 @@
 .payment__items {
   flex: 0.8;
 }
+
+.payment__confirm {
+  background: #f0c14b;
+  height: 30px;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #111;
+  margin-left: 4%;
+}
+
+.payment__details {
+  display: flex;
+}
+
+.payment__details > button {
+  margin-left: 15%;
+}
